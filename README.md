@@ -1,8 +1,11 @@
 # usher-example
 
-[![Build Status](https://travis-ci.org/overthink/usher-example.svg?branch=master)](https://travis-ci.org/overthink/usher-example)
-
 A very small [Usher](https://github.com/overthink/usher) example app.
+
+## Note!
+
+Still waiting on getting Usher into Sonatype, so for now this won't build
+unless you install Unsher locally on your machine with `sbt publishLocal`.
 
 ## HOWTO
 
