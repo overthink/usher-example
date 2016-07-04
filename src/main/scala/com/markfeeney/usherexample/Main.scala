@@ -15,7 +15,7 @@ object Main {
 
     val counter = new AtomicInteger(2)
     val db = mutable.HashMap[Int, String]()
-    db(0) = "Am I a good person? No. But do I try to be better every single day? Also no  - @internethippo"
+    db(0) = "Am I a good person? No. But do I try to be better every single day? Also no - @internethippo"
     db(1) = "Remember, always follow your passion. And if your passion doesn't fit into global capitalism, well, then you are a failure at life. - @existentialcoms"
     db(2) = "A heuristic on whether you have control of your life: can you take naps? - @nntaleb"
 
