@@ -2,11 +2,6 @@
 
 A very small [Usher](https://github.com/overthink/usher) example app.
 
-## Note!
-
-Still waiting on getting Usher into Sonatype, so for now this won't build
-unless you install Unsher locally on your machine with `sbt publishLocal`.
-
 ## HOWTO
 
 1. `sbt run`
