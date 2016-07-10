@@ -11,5 +11,5 @@ scalacOptions ++= Seq(
   "-Ywarn-unused-import"
 )
 libraryDependencies ++= Seq(
-  "com.markfeeney" % "usher_2.11" % "0.2.0"
+  "com.markfeeney" % "usher_2.11" % "0.2.1"
 )
