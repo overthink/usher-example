@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger
 
 import com.markfeeney.circlet.{Handler, JettyAdapter, JettyOptions, Response}
 import com.markfeeney.usher.Usher
-import com.markfeeney.usher.Usher.Simple.{GET, POST, PUT}
+import com.markfeeney.usher.Usher.Simple.{DELETE, GET, POST, PUT}
 import com.markfeeney.usher.Usher.{notFound, routes}
 
 import scala.collection.mutable
@@ -21,13 +21,7 @@ object Main {
 
     val app: Handler = routes(
       GET("/") { _ => Response(body = "Usher demo\n") },
-      GET("/saying/:id") { req =>
-        for {
-          params <- Usher.get(req)
-          id <- params.getInt("id")
-          result <- db.get(id)
-        } yield Response(body = result + "\n")
-      },
+      // create
       POST("/saying") { req =>
         req.bodyString().map { body =>
           val newId = counter.incrementAndGet()
@@ -35,7 +29,16 @@ object Main {
           Response(status = 201).addHeader("Location", f"/saying/$newId%d")
         }
       },
-      PUT("/saying/:id") { req =>
+      // read
+      GET("/saying/:id{\\d+}") { req =>
+        for {
+          params <- Usher.get(req)
+          id <- params.getInt("id")
+          result <- db.get(id)
+        } yield Response(body = result + "\n")
+      },
+      // update
+      PUT("/saying/:id{\\d+}") { req =>
         for {
           params <- Usher.get(req)
           id <- params.getInt("id")
@@ -43,6 +46,16 @@ object Main {
         } yield {
           db.put(id, saying)
           Response(status = 201).addHeader("Location", f"/saying/$id%d")
+        }
+      },
+      // delete
+      DELETE("/saying/:id{\\d+}") { req =>
+        for {
+          params <- Usher.get(req)
+          id <- params.getInt("id")
+        } yield {
+          db.remove(id)
+          Response(status = 204)
         }
       },
       notFound("Computer said no.\n")

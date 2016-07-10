@@ -10,7 +10,6 @@ scalacOptions ++= Seq(
   "-Xlint",
   "-Ywarn-unused-import"
 )
-resolvers += Opts.resolver.sonatypeSnapshots
 libraryDependencies ++= Seq(
-  "com.markfeeney" % "usher_2.11" % "0.1.0-SNAPSHOT"
+  "com.markfeeney" % "usher_2.11" % "0.2.0"
 )
